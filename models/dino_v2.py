@@ -103,6 +103,7 @@ class DinoV2_A(torch.nn.Module):
         video_features = self.encode_image(image)
         video_features = video_features.view(b, t, -1)
         
+
         video_features = self.mit(video_features)
         return video_features
     
