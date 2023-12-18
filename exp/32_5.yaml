@@ -1,0 +1,46 @@
+DATA:
+    ROOT: '/workspace/chad224'
+    TRAIN_FILE: '/workspace/chad_meta/splits/chad_train_umil.txt'
+    VAL_FILE: '/workspace/chad_meta/splits/chad_test_umil.txt'
+    DATASET: chad
+    INPUT_SIZE: 224
+    NUM_CLIPS: 8
+    NUM_FRAMES: 12
+    FRAME_INTERVAL: 3
+    NUM_CLASSES: 2
+    LABEL_LIST: 'labels/chad_2_labels.csv'
+    FILE_MODE: 'directory'
+    NUM_WORKERS: 8
+    FILENAME_TMPL: 'img_{:08}.jpg'
+    FILE_MODE: 'video'
+    KEYPOINTS_ROOT: '/workspace/chad_skeletons/chad/'
+    USE_HEATMAP: False
+
+    
+MODEL:
+    ARCH: ViT-B/32
+    INPUT_CHANNELS: 3
+    BACKBONE_ARCH: 'dinov2_vits14_reg'
+    FREEZE_BACKBONE: True
+    TYPE: 'dino'
+    MIT_LAYERS: 8
+TRAIN:
+    BATCH_SIZE: 16
+    ACCUMULATION_STEPS: 1
+    BATCH_SIZE_UMIL: 1
+    LR: 8.e-3
+    EPOCHS: 20
+    WARMUP_EPOCHS: 3
+
+MIL_SAVE_FREQ: 1
+UMIL_SAVE_FREQ: 1
+
+wandb:  
+  enable: True
+  mode: online  
+  project: anomaly  
+  entity: charles_hermit
+  name: UMIL_chad
+  group: null  
+  tags: null  
+  notes: null
